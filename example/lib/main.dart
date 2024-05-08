@@ -65,7 +65,8 @@ class MainApp extends StatelessWidget {
           child: TextButton(
               child: Text('go'),
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: ((context) => PlayerDemo())));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: ((context) => PlayerDemo())));
               }),
         ),
       ),
@@ -197,7 +198,7 @@ class _PlayerDemoState extends State<PlayerDemo> {
                   children: [
                     Flexible(
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 0),
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
                         child: AspectRatio(aspectRatio: 16 / 9, child: player),
                       ),
                     ),
@@ -259,8 +260,9 @@ class _PlayerDemoState extends State<PlayerDemo> {
                 Container(
                   width: 44,
                   height: 5,
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(9), color: const Color(0xffB0B6CC)),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(9),
+                      color: const Color(0xffB0B6CC)),
                 ),
                 const SizedBox(
                   height: 16,
@@ -321,8 +323,9 @@ class _PlayerDemoState extends State<PlayerDemo> {
                 Container(
                   width: 44,
                   height: 5,
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(9), color: const Color(0xffB0B6CC)),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(9),
+                      color: const Color(0xffB0B6CC)),
                 ),
                 const SizedBox(
                   height: 28,

@@ -230,20 +230,18 @@ class _YoutubePlayerScaffoldState extends State<YoutubePlayerScaffold> {
                                 final position =
                                     snapshot.data?.position.inSeconds ?? 0;
 
-                                return InkWell(
-                                  onTap: () async {
-                                    // if (position >= 10) {
-                                    await widget.controller.seekTo(
-                                      seconds: position - 5,
-                                      allowSeekAhead: true,
-                                    );
-                                    await widget.controller.playVideo();
+                                return Expanded(
+                                  child: InkWell(
+                                    onTap: () async {
+                                      // if (position >= 10) {
+                                      await widget.controller.seekTo(
+                                        seconds: position - 5,
+                                        allowSeekAhead: true,
+                                      );
+                                      await widget.controller.playVideo();
 
-                                    // }
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 40, vertical: 40),
+                                      // }
+                                    },
                                     child: Container(
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
@@ -269,15 +267,13 @@ class _YoutubePlayerScaffoldState extends State<YoutubePlayerScaffold> {
                             const SizedBox(
                               width: 5,
                             ),
-                            InkWell(
-                              onTap: () {
-                                value.playerState == PlayerState.playing
-                                    ? context.ytController.pauseVideo()
-                                    : context.ytController.playVideo();
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 40, vertical: 40),
+                            Expanded(
+                              child: InkWell(
+                                onTap: () {
+                                  value.playerState == PlayerState.playing
+                                      ? context.ytController.pauseVideo()
+                                      : context.ytController.playVideo();
+                                },
                                 child: Container(
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
@@ -325,34 +321,32 @@ class _YoutubePlayerScaffoldState extends State<YoutubePlayerScaffold> {
                                     snapshot.data?.position.inSeconds ?? 0;
                                 // var lastPosition = 0;
                                 // var pressedCount = 0;
-                                return InkWell(
-                                  onTap: () async {
-                                    await widget.controller.seekTo(
-                                      seconds: (position + 5),
-                                      allowSeekAhead: true,
-                                    );
-                                    await widget.controller.playVideo();
-                                    // pressedCount += 1;
-                                    // final duration = context.ytController.metadata.duration.inSeconds;
-                                    // if (lastPosition > position) {
-                                    //   widget.controller.seekTo(seconds: (lastPosition + 10));
-                                    //   lastPosition = position + 10;
-                                    // } else {
-                                    //   widget.controller.seekTo(seconds: (position + 10));
-                                    //   lastPosition = position +10;
-                                    // }
+                                return Expanded(
+                                  child: InkWell(
+                                    onTap: () async {
+                                      await widget.controller.seekTo(
+                                        seconds: (position + 5),
+                                        allowSeekAhead: true,
+                                      );
+                                      await widget.controller.playVideo();
+                                      // pressedCount += 1;
+                                      // final duration = context.ytController.metadata.duration.inSeconds;
+                                      // if (lastPosition > position) {
+                                      //   widget.controller.seekTo(seconds: (lastPosition + 10));
+                                      //   lastPosition = position + 10;
+                                      // } else {
+                                      //   widget.controller.seekTo(seconds: (position + 10));
+                                      //   lastPosition = position +10;
+                                      // }
 
-                                    // if ((position - lastPosition) <= 2) {
-                                    //   widget.controller
-                                    //       .seekTo(seconds: (position + (10 * pressedCount)).toDouble());
-                                    // }else{
-                                    //    widget.controller
-                                    //       .seekTo(seconds: (position + 10).toDouble());
-                                    // }
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 40, vertical: 40),
+                                      // if ((position - lastPosition) <= 2) {
+                                      //   widget.controller
+                                      //       .seekTo(seconds: (position + (10 * pressedCount)).toDouble());
+                                      // }else{
+                                      //    widget.controller
+                                      //       .seekTo(seconds: (position + 10).toDouble());
+                                      // }
+                                    },
                                     child: Container(
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
@@ -392,8 +386,7 @@ class _YoutubePlayerScaffoldState extends State<YoutubePlayerScaffold> {
                       return Builder(builder: (context) {
                         return SizedBox(
                           // width: MediaQuery.of(context).size.width,
-                          width: MediaQuery.of(context).size.width -
-                              widget.controlsPadding,
+                          width: double.infinity - widget.controlsPadding,
                           child: Visibility(
                             visible: value.isControlsVisible,
                             child: Padding(
@@ -486,8 +479,7 @@ class _YoutubePlayerScaffoldState extends State<YoutubePlayerScaffold> {
                               padding: EdgeInsets.only(bottom: 10),
                               child: SizedBox(
                                 // height: 20,
-                                width: MediaQuery.of(context).size.width -
-                                    widget.controlsPadding,
+                                width: double.infinity - widget.controlsPadding,
                                 child: Column(
                                   // mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.end,

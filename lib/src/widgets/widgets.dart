@@ -79,10 +79,10 @@ Future<void> showSettingsBottomSheet(
 }
 
 Future<void> showPlayBackBottomSheet(
-  BuildContext context,
-  bool isFullScreen,
-  final YoutubePlayerController controller,
-) {
+    BuildContext context,
+    bool isFullScreen,
+    final YoutubePlayerController controller,
+    ) {
   return showModalBottomSheet(
     isScrollControlled: true,
     backgroundColor: Colors.transparent,
@@ -93,26 +93,22 @@ Future<void> showPlayBackBottomSheet(
       maxWidth: isFullScreen ? 390 : double.infinity,
     ),
     builder: (context) {
-      return Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(24), topRight: Radius.circular(24)),
-          color: Colors.white,
-        ),
-        // width: isFullScreen ? 390 : null,
-
-        // height: 166,
-        padding: EdgeInsets.only(
-          bottom: MediaQuery.of(context).padding.bottom,
-        ),
-        child: SafeArea(
-          left: !isFullScreen,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 7),
-            child: SizedBox(
+      return SingleChildScrollView(
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(24), topRight: Radius.circular(24)),
+            color: Colors.white,
+          ),
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).padding.bottom,
+          ),
+          child: SafeArea(
+            left: !isFullScreen,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 7,),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
                     width: 44,
@@ -121,28 +117,23 @@ Future<void> showPlayBackBottomSheet(
                         borderRadius: BorderRadius.circular(9),
                         color: const Color(0xffB0B6CC)),
                   ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  ListView.builder(
-                    reverse: true,
-                    shrinkWrap: true,
-                    itemCount: PlaybackRate.all.length,
-                    itemBuilder: (context, index) => InkWell(
+                  const SizedBox(height: 16),
+                  for (var rate in PlaybackRate.all.reversed)
+                    InkWell(
                       onTap: () {
-                        controller.setPlaybackRate(PlaybackRate.all[index]);
+                        controller.setPlaybackRate(rate);
                         Navigator.of(context).pop();
                       },
                       child: FutureBuilder<double>(
-                          future: controller.playbackRate,
-                          builder: (context, s) {
-                            return SubMenuItem(
-                              isSelected: s.data == PlaybackRate.all[index],
-                              mainText: '${PlaybackRate.all[index]} ${'x'}',
-                            );
-                          }),
+                        future: controller.playbackRate,
+                        builder: (context, snapshot) {
+                          return SubMenuItem(
+                            isSelected: snapshot.data == rate,
+                            mainText: '$rate x',
+                          );
+                        },
+                      ),
                     ),
-                  )
                 ],
               ),
             ),

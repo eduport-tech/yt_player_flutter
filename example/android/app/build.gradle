@@ -33,7 +33,7 @@ android {
 
     defaultConfig {
         applicationId "np.com.sarbagyastha.youtube_player_iframe_example"
-        minSdkVersion 19
+        minSdkVersion flutter.minSdkVersion
         targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
